@@ -1,0 +1,13 @@
+{% extends 'base.html '%}
+
+{% block content %}
+<form  method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="" value="Submit">
+    <a href="{% url 'aulas_curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug  %}">cancel update</a>
+</form>
+
+
+
+{% endblock %}

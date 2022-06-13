@@ -1,0 +1,14 @@
+{% extends 'base.html '%}
+
+{% block content %}
+<h3>tem certeza que quer apagar ?</h3>
+<form  method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="" value="delete">
+    <a href="{% url 'aulas_curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug  %}">cancel update</a>
+</form>
+
+
+
+{% endblock %}

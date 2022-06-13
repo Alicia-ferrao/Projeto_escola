@@ -1,0 +1,144 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+  <head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/master_css.css' %}">
+    <!--Chartjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    
+    <!--Custome CSS-->
+  
+    
+    <title></title>
+  </head>
+  <body>
+    
+  
+    <nav class="navbar navbar-expand-lg  navbar-light bg-light fixed-top scrolling-navbar">
+      <div class="container" >
+            <a class="navbar-brand" href="{% url 'index' %}" style="color:#ff5722;" >Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+            <div class="collapse navbar-collapse" id="basicExampleNav" >
+              <ul class=" navbar-nav  mr-auto smooth-scroll " >
+                      <li class="nav-item">
+                         <a class="nav-link" href="{% url 'aulas_curriculum:standard_list' %}">Curriculum</a>
+                      </li>
+                      {% if user.is_superuser %}
+                      <li class="nav-item ">
+                         <a class="nav-link" href="{% url 'admin:index' %}">Admin</span> </a>
+                      </li>
+                      {%endif%}
+                      {% if user.is_authenticated %}
+                          <li class="nav-item  ">
+                           <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+                          </li>
+                      {% else %}
+                          <li class="nav-item ">
+                              <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+                          </li>
+                          <li class="nav-item " >
+                             <a class="nav-link" href="{% url 'register' %}">Register</span> </a>
+                          </li>
+                      {% endif %}
+                      <li class="nav-item">
+                         <a class="nav-link" href="">Contact Us</a>
+                      </li>
+                      <li class="nav-item">
+                         <a class="nav-link" href="https://github.com/somvirs57/school_learning_management">GitHub</a>
+                      </li>
+                      <li class="nav-item">
+                         <a class="nav-link" href="https://www.youtube.com/c/LearningBots">Youtube</a>
+                      </li>
+
+              </ul>
+            </div>
+      </div>
+    </nav>
+
+        <header>
+          <div id="intro" class="container-fluid d-flex align-items-center justify-content h-100">
+            <div class="row d-flex justify-content-center text-center" >
+              <div class="col-md-10 text-white">
+               
+                <h2 class="display-4 font-weight-bold white-text p-5 mb-2" style="color:#ff5722;">Start learning</h2>
+                
+                <hr style="color: #ff5722;">
+               
+              
+                <h4 class="white-text y-4"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse error, cum ipsa nesciunt delectus reprehenderit cupiditate in 
+                illo voluptate veritatis? Porro sit magni ex repudiandae mollitia facere laborum nemo veniam.
+                
+              </h4>  
+            
+              <a href="{% url 'aulas_curriculum:standard_list' %}"> <button type="button" class="btn" style="color: #ff5722;"></button> clique aqui</a>
+              
+              </div>
+            </div>
+          </div>
+
+        </header>
+        
+        {% block content %}
+
+
+        {% endblock %}
+
+
+        <footer class="page-footer" style="background-color:#b2ebf2;">
+          <div class="container">
+            <div class="row mt-4">
+                      <div class="col-md-4 mt-4">
+                                <h3>About Us</h3> <br>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                      </div>
+                      <div class="col-md-4 mt-4">
+                                <h3>Other Useful Stuff</h3>
+                                <ul>
+                                  <li>Item 1</li>
+                                  <li>Item 2</li>
+                                  <li>Item 3</li>
+                                </ul>
+                      </div>
+                      <div class="col-md-4 mt-4">
+                                <h3>Contact Us</h3>
+                                <ul>
+                                  <li>Address: Nearest you, state, country</li>
+                                  <li>info@gmail.com</li>
+                                  <li>contact number</li>
+                                </ul>
+                      </div>
+            </div>
+            <div class="footer-copyright text-center py-3">
+                <p>© 2020 Copyright: Learningbotshub.com</p>
+            </div>
+          </div>
+        </footer>
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    -->
+
+  </body>
+</html>

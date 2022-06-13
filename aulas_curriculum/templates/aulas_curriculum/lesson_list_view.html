@@ -1,0 +1,9 @@
+{% extends 'base.html '%}
+
+{% block content %}
+    {% for lesson in subjects.lessons.all %}
+       <a href="{% url 'aulas_curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug  %}">chapter-{{lesson.position}}: {{ lesson.name }}</a> <br>
+
+    {% endfor %}
+    <a href="{% url 'aulas_curriculum:lesson_create' standard=subjects.standard.slug slug=subjects.slug  %}">Create lessons</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+        
+    {% if required %}
+
+            <h1>thank you resgistering </h1>
+        {% else %}
+            <h3>fill the form</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form }}
+                {{ profile_form }}
+                <input type="submit" value="Register" class="btn btn-primary btn-block">
+            </form>
+    
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html '%}
+
+{% block content %}
+
+
+
+    <p>created on {{lessons.created_at}} by {{lessons.created_by}} </p> <br>
+    <a href="{% url 'aulas_curriculum:lesson_update' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug  %}">Update lessons</a>
+    <a href="{% url 'aulas_curriculum:lesson_delete' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug  %}">Delete lessons</a>
+    
+
+
+    <h4>introduza o seu comentario ou pergunta...</h4>
+    <form method="POST">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="form" value="Add comment" class="btn btn-primary btn-sm">
+        </div>
+    </form>
+    {% for comment in lessons.comments.all %}
+                               <h4>{{comment.author}} <small><i>Posted on {{comment.date_added}}</i></small></h4>
+                                  <p>{{comment.body}}</p>
+                          {% for reply in comment.replies.all %}
+                                      
+                                              <h5>{{reply.author}} <small><i>Posted on {{reply.date_added}}</i></small></h5>
+                                              <p>{{reply.reply_body}}</p>
+                                     
+                          {% endfor %}
+                          <!-- form to post reply -->
+                          <form method="POST">
+                                <input type="hidden" name="comment.id" value="{{comment.id}}">
+                                <input type="hidden" name="comment.comm_name" value="{{comment.comm_name}}">
+                                {% csrf_token %}
+                                {{form2.as_p}}
+                                <input type="submit" name="form2" value="Add Reply" class="btn btn-warning btn-sm">
+                          </form>
+   
+    {% endfor %}
+
+
+{% endblock %}
